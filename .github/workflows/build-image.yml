@@ -40,6 +40,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env:image_name }}:latest,${{ env:image_name }}:${{ steps.variables.outputs.SOURCE_TAG }}
+            ${{ env.image_name }}:latest,${{ env.image_name }}:${{ steps.variables.outputs.SOURCE_TAG }}
           build-args: |
             MKCERT_VERSION=${{ steps.variables.outputs.SOURCE_TAG }}
