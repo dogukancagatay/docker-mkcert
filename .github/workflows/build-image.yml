@@ -54,3 +54,11 @@ jobs:
           platforms: ${{ env.build_platforms }}
           tags: |
             ${{ env.image_name }}:master
+
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v4
+        if: ${{ github.ref == 'refs/heads/master' || github.event_name == 'release' }}
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ env.image_name }}
