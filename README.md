@@ -12,6 +12,8 @@ The container can be run with *docker run* command and create a new Root CA cert
 docker run --rm -it -v "$PWD/certs:/certs" dcagatay/mkcert example.com www.example.com '*.example.com'
 ```
 
+Note: The single quotes around '*.example.com' are necessary to prevent the shell from prematurely expanding the wildcard character.
+
 If the domain list is not given, only Root CA certificate will be created.
 
 ```sh
