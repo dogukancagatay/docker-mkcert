@@ -1,8 +1,8 @@
 FROM busybox:stable
 LABEL maintainer="Doğukan Çağatay <dcagatay@gmail.com>"
 
+ARG MKCERT_VERSION="v1.4.4"
 ARG GITHUB_PROXY="https://github.com"
-ARG MKCERT_VERSION="v1.4.3"
 
 ENV DOMAINS="dev.mydomain.com"
 
