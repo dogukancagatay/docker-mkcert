@@ -40,7 +40,7 @@ docker buildx build -t dcagatay/mkcert:latest .
 
 - In the version `v1.4.4`;
   - The root certificate directory was moved to `/certs/ca` from `/certs`, If you were using a previous version you need to move your `rootCA.pem` and `rootCA-key.pem` files under `/certs/ca`.
-  - The user id and group id variables, `UID` and `GID`, are renamed to `PUID` and `PGUID`.
+  - The user id and group id variables, `UID` and `GID`, are renamed to `PUID` and `PUID`.
 
 ## Credits
 
