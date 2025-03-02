@@ -4,14 +4,15 @@ LABEL maintainer="Doğukan Çağatay <dcagatay@gmail.com>"
 ARG MKCERT_VERSION="v1.4.4"
 ARG GITHUB_PROXY="https://github.com"
 
-ENV DOMAINS="dev.mydomain.com"
-
-ADD ${GITHUB_PROXY}/FiloSottile/mkcert/releases/download/${MKCERT_VERSION}/mkcert-${MKCERT_VERSION}-linux-amd64 /usr/bin/mkcert
+ARG TARGETOS
+ARG TARGETARCH
+ADD ${GITHUB_PROXY}/FiloSottile/mkcert/releases/download/${MKCERT_VERSION}/mkcert-${MKCERT_VERSION}-$TARGETOS-$TARGETARCH /usr/bin/mkcert
 COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /usr/bin/mkcert /entrypoint.sh
 
-WORKDIR /root/.local/share/mkcert
+# Put CA certificates under /certs/ca
+ENV CAROOT="/certs/ca"
 
-RUN chmod +x /usr/bin/mkcert /entrypoint.sh && \
-    ln -s /root/.local/share/mkcert /certs
-
+WORKDIR /certs
+VOLUME /certs
 ENTRYPOINT ["/entrypoint.sh"]

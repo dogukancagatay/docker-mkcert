@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# set -x
+set -e
 
 if [ -z "$@" ]; then
   mkcert -install
 else
-  mkcert -install && mkcert $@
+  mkcert -install && mkcert "$@"
 fi
 
-if [ ! -z "$UID" ] && [ ! -z "$GID" ]; then
-  chown -R "$UID:$GID" /certs/*
+if [ -n "${PUID}" ] && [ -n "${PGID}" ]; then
+  chown -R "$PUID:$PGID" /certs
 fi
