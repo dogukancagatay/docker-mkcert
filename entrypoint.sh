@@ -2,7 +2,7 @@
 
 set -e
 
-if [ -z "$@" ]; then
+if [ "$#" -eq 0 ]; then
   mkcert -install
 else
   mkcert -install && mkcert "$@"
